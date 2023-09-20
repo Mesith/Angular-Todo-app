@@ -2,20 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.4.
 
-## Figma and Code Demo
-
-[Figma Page](https://www.figma.com/file/7EQxSKtrUZ3B8ZZDA9BvUi/To-Do-APP?node-id=0%3A1=)
-
-![GIF of Project](/demo.gif)
-
-
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
