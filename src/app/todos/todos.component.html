@@ -1,0 +1,42 @@
+<section class="heading-section noselect">
+    <h1>ToDo’s</h1>
+</section>
+
+<div class="container add-todo-box-container">
+    <div class="add-todo-box">
+        <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
+            <div class="flex-container">
+                <p style="flex: 1;">
+                    <input ngModel #todoTextField="ngModel" name="text" required minlength="2" name="text" class="input"
+                        type="text" placeholder="Schreib dein ToDo, musst du tun...">
+                </p>
+                <p>
+                    <button type="submit" class="button alt-gradient-button">
+                        <i class="material-icons">add</i>
+                        Hinzufügen
+                    </button>
+                </p>
+            </div>
+            <div *ngIf="todoTextField.invalid && showValidationErrors">
+                <div class="notif" *ngIf="todoTextField.errors['required']">
+                    <i class="material-icons-outlined" style="font-size: 20px;">info</i>
+                    <p>Bitte geben Sie den Text Ihres Todos ein</p>
+                </div>
+                <div class="notif" *ngIf="todoTextField.errors['minlength']">
+                    <i class="material-icons-outlined" style="font-size: 20px;">info</i>
+                    <p>Aufgabentext muss mindestens 2 Zeichen lang sein</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <app-empty-section *ngIf="todos.length < 1"></app-empty-section>
+        <div class="todos-list">
+            <app-todo-item *ngFor="let todo of todos" [todo]="todo" (todoClicked)="toggleCompleted(todo)"
+                (editClicked)="editTodo(todo)" (deleteClicked)="deleteTodo(todo)"></app-todo-item>
+        </div>
+    </div>
+</section>
