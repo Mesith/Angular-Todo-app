@@ -6,31 +6,28 @@ import { Todo } from '../shared/todo.model';
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
-  styleUrls: ['./todos.component.scss']
+  styleUrls: ['./todos.component.scss'],
 })
 export class TodosComponent implements OnInit {
-
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {}
 
   todos!: Todo[];
   showValidationErrors: boolean = false;
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     console.log(this.todos);
-    
-    this.todos = this.dataService.getAllTodos()
-
+    this.todos = await this.dataService.getAllTodosAPI();
     console.log(this.todos);
-
+    //this.dataService.getAllTodosAPI()
   }
 
   onFormSubmit(form: NgForm) {
-    if (form.invalid) return this.showValidationErrors = true
+    if (form.invalid) return (this.showValidationErrors = true);
 
-    this.dataService.addTodo(new Todo(form.value.text))
+    this.dataService.addTodo(new Todo(form.value.text));
 
-    this.showValidationErrors = false
-    form.reset()
+    this.showValidationErrors = false;
+    form.reset();
   }
 
   toggleCompleted(todo: Todo) {
@@ -38,12 +35,11 @@ export class TodosComponent implements OnInit {
   }
 
   editTodo(todo: Todo) {
-    const index = this.todos.indexOf(todo)
+    const index = this.todos.indexOf(todo);
   }
 
   deleteTodo(todo: Todo) {
-    const index = this.todos.indexOf(todo)
-    this.dataService.deleteTodo(index)
+    const index = this.todos.indexOf(todo);
+    this.dataService.deleteTodo(index);
   }
-
 }
